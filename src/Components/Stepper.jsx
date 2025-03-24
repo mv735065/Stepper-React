@@ -5,6 +5,7 @@ import Button from "./Button";
 import Content from "./Content";
 const Stepper = ({ totalSteps }) => {
   let [stepCount, setStepCount] = useState(1);
+  let steps=[1,2,3,4];
 
   function goToPrev() {
     let presentStep = stepCount;
@@ -21,13 +22,17 @@ const Stepper = ({ totalSteps }) => {
   return (
     <div className="w-[80vw] my-0 mx-auto mt-10">
       <div className="flex flex-row w-full    justify-between items-baseline py-2">
-        <Circle title={1}  presentStep={stepCount} />
-        <Line number={1} presentStep={stepCount} />
-        <Circle title={2}  presentStep={stepCount} />
-        <Line number={2} presentStep={stepCount} />
-        <Circle title={3} presentStep={stepCount} />
-        <Line number={3} presentStep={stepCount} />
-        <Circle title={4}  presentStep={stepCount} />
+      {steps.map((step, index) => (
+          <React.Fragment key={step}>
+            {/* Circle */}
+            <Circle title={step} number={step} presentStep={stepCount} />
+
+            {/* Line */}
+            {index < steps.length - 1 && (
+              <Line number={step} presentStep={stepCount} />
+            )}
+          </React.Fragment>
+        ))}
       </div>
       <Content presentStep={stepCount} />
       <div className="flex justify-around">
