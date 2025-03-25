@@ -36,8 +36,16 @@ const Stepper = ({ totalSteps }) => {
       </div>
       <Content presentStep={stepCount} />
       <div className="flex justify-around">
-        <Button title={"Prev"} handleClick={() => goToPrev()} />
-        <Button title={"Next"} handleClick={() => goToNext()} />
+        <Button
+          title={"Prev"}
+          handleClick={goToPrev}
+          disabled={stepCount === 1} 
+        />
+        <Button
+          title={"Next"}
+          handleClick={goToNext}
+          disabled={stepCount === totalSteps} 
+        />
       </div>
     </div>
   );
